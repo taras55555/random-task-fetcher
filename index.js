@@ -2,7 +2,10 @@ const express = require('express');
 const connection = require('./connection');
 
 const app = express();
+const cors = require('cors');
 const port = process.env.PORT;
+
+app.use(cors());
 
 app.get('/api', (req, res) => {
     const randomSet = new Set([])
@@ -15,7 +18,7 @@ app.get('/api', (req, res) => {
         }
 
         while (randomSet.size !== 10) {
-            const randVal = Math.floor(Math.random() * rows.length + 1);
+            const randVal = Math.floor(Math.random() * rows.length);
             randomSet.add(rows[randVal])
         }
 
